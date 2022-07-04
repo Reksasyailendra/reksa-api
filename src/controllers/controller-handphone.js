@@ -12,7 +12,7 @@ module.exports = {
             if (err) throw err;
             connection.query(
                 `
-                SELECT * FROM tabel_handphone;
+                SELECT * FROM handphone;
                 `,
                 function (error, results) {
                     if (error) throw error;
@@ -26,14 +26,14 @@ module.exports = {
         })
     },
     getDataHandphoneByID(req, res) {
-        let id_HP = req.params.id_HP;
+        let id = req.params.id;
         pool.getConnection(function (err, connection) {
             if (err) throw err;
             connection.query(
 
                 `
-                SELECT * FROM tabel_handphone WHERE id_HP = ?;
-                `, [id_HP],
+                SELECT * FROM handphone WHERE id = ?;
+                `, [id],
                 function (error, results) {
                     if (error) throw error;
                     res.send({
@@ -47,16 +47,16 @@ module.exports = {
     },
     addDataHandphone(req, res) {
         let data = {
-            nama_HP: req.body.nama_HP,
-            jenis_HP: req.body.jenis_HP,
-            nomor_seri_HP: req.body.nomor_seri_HP,
+            nama_hp: req.body.nama_hp,
+            jenis_hp: req.body.jenis_hp,
+            no_seri: req.body.no_seri,
             tanggal_produksi: req.body.tanggal_produksi
         }
         pool.getConnection(function (err, connection) {
             if (err) throw err;
             connection.query(
                 `
-                INSERT INTO tabel_handphone SET ?;
+                INSERT INTO handphone SET ?;
                 `, [data],
                 function (error, results) {
                     if (error) throw error;
@@ -70,18 +70,18 @@ module.exports = {
     },
     editDataHandphone(req, res) {
         let dataEdit = {
-            nama_HP: req.body.nama_HP,
-            jenis_HP: req.body.jenis_HP,
-            nomor_seri_HP: req.body.nomor_seri_HP,
+            nama_hp: req.body.nama_hp,
+            jenis_hp: req.body.jenis_hp,
+            no_seri: req.body.no_seri,
             tanggal_produksi: req.body.tanggal_produksi
         }
-        let id_HP = req.body.id_HP
+        let id = req.body.id
         pool.getConnection(function (err, connection) {
             if (err) throw err;
             connection.query(
                 `
-                UPDATE tabel_handphone SET ? WHERE id_HP = ?;
-                `, [dataEdit, id_HP],
+                UPDATE handphone SET ? WHERE id = ?;
+                `, [dataEdit, id],
                 function (error, results) {
                     if (error) throw error;
                     res.send({
@@ -93,13 +93,13 @@ module.exports = {
         })
     },
     deleteDataHandphone(req, res) {
-        let id_HP = req.body.id_HP
+        let id = req.body.id
         pool.getConnection(function (err, connection) {
             if (err) throw err;
             connection.query(
                 `
-                DELETE FROM tabel_handphone WHERE id_HP = ?;
-                `, [id_HP],
+                DELETE FROM handphone WHERE id = ?;
+                `, [id],
                 function (error, results) {
                     if (error) throw error;
                     res.send({
