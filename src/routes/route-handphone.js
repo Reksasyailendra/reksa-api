@@ -7,7 +7,7 @@ const {
 router.get('/handphone', handphone.getDataHandphone);
 
 // GET localhost:8080/handphone/2=›Ambildatasemuahandphoneberda
-router.get('/handphone/:id_HP', handphone.getDataHandphoneByID);
+router.get('/handphone/:id', handphone.getDataHandphoneByID);
 
 // POST localhost:8080/handphone/add=›Tambahdatahandphonekedatat
 router.post('/handphone/add', handphone.addDataHandphone);
